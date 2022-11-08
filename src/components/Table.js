@@ -45,22 +45,22 @@ const EmployeeTable = () => {
     const generateTable = (data) => {
         return (
             <table>
-                <tbody>
-                    <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Salary</th>
-                        <th>Edit</th>
+                <tbody className="bg-white text-xl">
+                    <tr className="border-b">
+                        <th className="p-8">First Name</th>
+                        <th className="p-8">Last Name</th>
+                        <th className="p-8">Salary</th>
+                        <th className="p-8">Edit</th>
                     </tr>
                     {data.map((item, i) => {
                         return (
-                            <tr key={i}>
-                                <th>{item.firstName}</th>
-                                <th>{item.lastName}</th>
-                                <th>{item.salary}</th>
-                                <th>
-                                    <button onClick={(e) => setEmployeeToEdit(item)}>Edit</button>
-                                    <button onClick={(e) => deleteEmployee(item._id)}>Delete</button>
+                            <tr className="border-b transition duration-300 hover:bg-gray-100" key={i}>
+                                <th className="font-light p-6">{item.firstName}</th>
+                                <th className="font-light p-6">{item.lastName}</th>
+                                <th className="font-light p-6">{item.salary}</th>
+                                <th className="font-light p-6 text-sm">
+                                    <button className="bg-white hover:bg-gray-300 font-bold mx-1 px-3 py-2 border border-gray-400 rounded shadow" onClick={(e) => setEmployeeToEdit(item)}>Edit</button>
+                                    <button className="bg-red-500 hover:bg-red-700 text-white font-bold mx-1 px-3 py-2 border border-black rounded shadow" type="submit" onClick={(e) => deleteEmployee(item._id)}>Delete</button>
                                 </th>
                             </tr>
                         )
@@ -72,9 +72,8 @@ const EmployeeTable = () => {
 
     return (
         loading ? <h1>Loading</h1> :
-            <div>
+            <div className="inline-block">
                 {generateTable(employeeData)}
-                <button>Add Employee</button>
                 <EditForm data={employeeToEdit}></EditForm>
                 <AddForm></AddForm>
             </div>
