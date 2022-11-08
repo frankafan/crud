@@ -47,8 +47,13 @@ router.patch('/:id', getEmployee, async (req, res) => {
 });
 
 // Delete employee data
-router.delete('/:id', async (req, res) => {
-
+router.delete('/:id', getEmployee, async (req, res) => {
+    try {
+        await res.employee.remove();
+        res.send("Employee deleted");
+    } catch (err) {
+        res.status(500).send(err.message);
+    }
 });
 
 
