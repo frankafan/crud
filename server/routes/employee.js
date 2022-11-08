@@ -14,7 +14,17 @@ router.get('/', async (req, res) => {
 
 // Add employee data
 router.post('/', async (req, res) => {
-
+    const employee = new Employee({
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        salary: req.body.salary
+    });
+    try {
+        const newEmployee = await employee.save();
+        res.status(201).json(newEmployee);
+    } catch (err) {
+        res.status(400).send(err.message);
+    }
 });
 
 // Update employee data
