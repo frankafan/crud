@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import EditForm from "./EditForm";
+import AddForm from "./AddForm";
 
 const EmployeeTable = () => {
 
@@ -75,6 +76,7 @@ const EmployeeTable = () => {
                 {generateTable(employeeData)}
                 <button>Add Employee</button>
                 <EditForm data={employeeToEdit}></EditForm>
+                <AddForm></AddForm>
             </div>
     );
 }
