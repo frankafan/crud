@@ -20,6 +20,18 @@ const EmployeeTable = () => {
         );
     }, []);
 
+
+    const deleteEmployee = (id) => {
+        fetch("http://localhost:8000/employee/" + id, {
+            method: "DELETE"
+        }
+        ).then(
+            res => res.json()
+        ).then(
+            res => console.log(res.message)
+        );
+    }
+
     // Generate table after the data is fetched
     const generateTable = (data) => {
         return (
@@ -37,7 +49,10 @@ const EmployeeTable = () => {
                                 <th>{item.firstName}</th>
                                 <th>{item.lastName}</th>
                                 <th>{item.salary}</th>
-                                <th><button>Edit</button><button>Delete</button></th>
+                                <th>
+                                    <button>Edit</button>
+                                    <button onClick={(e) => deleteEmployee(item._id)}>Delete</button>
+                                </th>
                             </tr>
                         )
                     })}
@@ -47,8 +62,10 @@ const EmployeeTable = () => {
     }
 
     return (
+        loading ? <h1>Loading</h1> : 
         <div>
-            {loading ? <h1>Loading</h1> : generateTable(employeeData)}
+            {generateTable(employeeData)}
+            <button>Add Employee</button>
         </div>
     )
 }
