@@ -65,15 +65,15 @@ const EmployeeTable = () => {
                 </tbody>
             </table>
         )
-    }
+    };
 
     return (
-        loading ? <h1>Loading</h1> : 
-        <div>
-            {generateTable(employeeData)}
-            <button>Add Employee</button>
-        </div>
-    )
+        loading ? <h1>Loading</h1> :
+            <div>
+                {generateTable(employeeData)}
+                <button>Add Employee</button>
+            </div>
+    );
 }
 
 export default EmployeeTable;
