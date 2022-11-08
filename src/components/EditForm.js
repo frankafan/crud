@@ -12,6 +12,7 @@ const EditForm = (employee) => {
         };
     }, [employee]);
 
+    // Store form data as states
     const [id, setId] = useState("");
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -23,7 +24,7 @@ const EditForm = (employee) => {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json"
-              },          
+            },
             body: JSON.stringify({
                 firstName: firstName,
                 lastName: lastName,
