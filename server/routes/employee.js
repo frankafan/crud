@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
         const employees = await Employee.find();
         res.json(employees);
     } catch (err) {
-        res.send(err.message);
+        res.json({ message: err.message });
     }
 });
 
@@ -23,7 +23,7 @@ router.post('/', async (req, res) => {
         const newEmployee = await employee.save();
         res.status(201).json(newEmployee);
     } catch (err) {
-        res.status(400).send(err.message);
+        res.status(400).json({ message: err.message });
     }
 });
 
@@ -42,7 +42,7 @@ router.patch('/:id', getEmployee, async (req, res) => {
         const updatedEmployee = await res.employee.save();
         res.json(updatedEmployee);
     } catch (err) {
-        res.status(400).send(err.message);
+        res.status(400).json({ message: err.message });
     }
 });
 
@@ -50,9 +50,9 @@ router.patch('/:id', getEmployee, async (req, res) => {
 router.delete('/:id', getEmployee, async (req, res) => {
     try {
         await res.employee.remove();
-        res.send("Employee deleted");
+        res.json({ message: "Employee deleted" });
     } catch (err) {
-        res.status(500).send(err.message);
+        res.status(500).json({ message: err.message });
     }
 });
 
@@ -62,10 +62,10 @@ async function getEmployee(req, res, next) {
     try {
         employee = await Employee.findById(req.params.id);
         if (employee == null) {
-            return res.status(404).send("Employee does not exist");
+            return res.status(404).json({ message: "Employee does not exist" });
         }
     } catch (err) {
-        return res.status(500).send(err.message);
+        return res.status(500).json({ message: err.message });
     }
     res.employee = employee;
     next()
