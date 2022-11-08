@@ -4,7 +4,12 @@ const Employee = require("../models/employee")
 
 // Get all employee data
 router.get('/', async (req, res) => {
-
+    try {
+        const employees = await Employee.find();
+        res.json(employees);
+    } catch (err) {
+        res.send(err.message);
+    }
 });
 
 // Add employee data
