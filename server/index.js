@@ -18,6 +18,10 @@ mongoose.connect(`mongodb+srv://${process.env.DATABASE_USER}:${process.env.DATAB
 
 const db = mongoose.connection;
 
+// Create employee data endpoint
+const employeeRouter = require("./routes/employee");
+app.use("/employee", employeeRouter);
+
 app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`);
 });
