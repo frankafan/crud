@@ -59,8 +59,8 @@ const EmployeeTable = () => {
                                 <th className="font-light p-6">{item.lastName}</th>
                                 <th className="font-light p-6">{item.salary}</th>
                                 <th className="font-light p-6 text-sm">
-                                    <button className="bg-white hover:bg-gray-300 font-bold mx-1 px-3 py-2 border border-gray-400 rounded shadow" onClick={(e) => setEmployeeToEdit(item)}>Edit</button>
-                                    <button className="bg-red-500 hover:bg-red-700 text-white font-bold mx-1 px-3 py-2 border border-black rounded shadow" type="submit" onClick={(e) => deleteEmployee(item._id)}>Delete</button>
+                                    <button className="bg-white hover:bg-gray-300 font-bold mx-1 px-3 py-2 border border-gray-400 rounded shadow transition duration-200" onClick={(e) => setEmployeeToEdit(item)}>Edit</button>
+                                    <button className="bg-red-500 hover:bg-red-700 text-white font-bold mx-1 px-3 py-2 border border-black rounded shadow transition duration-200" type="submit" onClick={(e) => deleteEmployee(item._id)}>Delete</button>
                                 </th>
                             </tr>
                         )

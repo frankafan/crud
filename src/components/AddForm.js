@@ -39,7 +39,7 @@ const AddForm = () => {
     return (
         <>
             <button
-                className="bg-blue-400 hover:bg-blue-600 text-white font-bold m-5 mb-12 px-3 py-2 border border-gray-400 rounded shadow"
+                className="bg-blue-400 hover:bg-blue-600 transition duration-300 text-white font-bold m-5 mb-12 px-3 py-2 border border-gray-400 rounded shadow"
                 type="button"
                 onClick={() => setDialogOpen(true)}
             >
@@ -68,10 +68,10 @@ const AddForm = () => {
                                         Salary:
                                         <input className="ml-4 rounded border-gray-300 p-3 border" type="text" value={salary} onChange={(e) => setSalary(e.target.value)} />
                                     </label>
-                                    <input type="submit" value="Submit" className="bg-white hover:bg-gray-300 font-bold mt-5 mx-1 px-3 py-2 border border-gray-400 rounded shadow" />
+                                    <input type="submit" value="Submit" className="bg-white hover:bg-gray-300 font-bold mt-5 mx-1 px-3 py-2 border border-gray-400 rounded shadow transition duration-200" />
                                     <button
                                         type="button"
-                                        className="bg-red-500 hover:bg-red-700 text-white font-bold mt-5 mx-1 px-3 py-2 border border-gray-400 rounded shadow"
+                                        className="bg-red-500 hover:bg-red-700 text-white font-bold mt-5 mx-1 px-3 py-2 border border-gray-400 rounded shadow transition duration-200"
                                         onClick={closeModal}
                                     >
                                         Cancel
