@@ -37,4 +37,19 @@ router.delete('/:id', async (req, res) => {
 
 });
 
+
+async function getEmployee(req, res, next) {
+    let employee;
+    try {
+        employee = await Employee.findById(req.params.id);
+        if (employee == null) {
+            return res.status(404).send("Employee does not exist");
+        }
+    } catch (err) {
+        return res.status(500).send(err.message);
+    }
+    res.employee = employee;
+    next()
+}
+
 module.exports = router;
