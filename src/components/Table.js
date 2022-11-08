@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
+import EditForm from "./EditForm";
 
 const EmployeeTable = () => {
 
     const [loading, setLoading] = useState(true);  // indicator that the frontend is loading the API data
     const [employeeData, setEmployeeData] = useState();  // employee data requested from the backend
+    const [employeeToEdit, setEmployeeToEdit] = useState();  // employee data passed to the edit form component
 
     // Use GET request to fetch employee data everytime the page is loaded
     useEffect(() => {
@@ -56,7 +58,7 @@ const EmployeeTable = () => {
                                 <th>{item.lastName}</th>
                                 <th>{item.salary}</th>
                                 <th>
-                                    <button>Edit</button>
+                                    <button onClick={(e) => setEmployeeToEdit(item)}>Edit</button>
                                     <button onClick={(e) => deleteEmployee(item._id)}>Delete</button>
                                 </th>
                             </tr>
@@ -72,6 +74,7 @@ const EmployeeTable = () => {
             <div>
                 {generateTable(employeeData)}
                 <button>Add Employee</button>
+                <EditForm data={employeeToEdit}></EditForm>
             </div>
     );
 }
