@@ -28,8 +28,22 @@ router.post('/', async (req, res) => {
 });
 
 // Update employee data
-router.patch('/:id', async (req, res) => {
-
+router.patch('/:id', getEmployee, async (req, res) => {
+    if (req.body.firstName != null) {
+        res.employee.firstName = req.body.firstName;
+    }
+    if (req.body.lastName != null) {
+        res.employee.lastName = req.body.lastName;
+    }
+    if (req.body.salary != null) {
+        res.employee.salary = req.body.salary;
+    }
+    try {
+        const updatedEmployee = await res.employee.save();
+        res.json(updatedEmployee);
+    } catch (err) {
+        res.status(400).send(err.message);
+    }
 });
 
 // Delete employee data
