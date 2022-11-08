@@ -23,7 +23,7 @@ const EmployeeTable = ({ data }) => {
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Salary</th>
-                    <th></th>
+                    <th>Edit</th>
                 </tr>
                 {data.map((item, i) => {
                     return (
@@ -31,6 +31,7 @@ const EmployeeTable = ({ data }) => {
                             <th>{item.firstName}</th>
                             <th>{item.lastName}</th>
                             <th>{item.salary}</th>
+                            <th><button>Edit</button><button>Delete</button></th>
                         </tr>
                     )
                 })}
