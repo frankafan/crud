@@ -1,48 +1,55 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
-const EmployeeTable = ({ data }) => {
+const EmployeeTable = () => {
 
-    const generateTable = () => {
+    const [loading, setLoading] = useState(true);  // indicator that the frontend is loading the API data
+    const [employeeData, setEmployeeData] = useState();  // employee data requested from the backend
 
-        data = [
-            {
-                "firstName": "Lewis",
-                "lastName": "Burson",
-                "salary": 99000
-            },
-            {
-                "firstName": "Ian",
-                "lastName": "Malcolm",
-                "salary": 99000
+    // Use GET request to fetch employee data everytime the page is loaded
+    useEffect(() => {
+        fetch("http://localhost:8000/employee/", {
+            method: "GET"
+        }
+        ).then(
+            res => res.json()
+        ).then(
+            res => {
+                setEmployeeData(res);
+                setLoading(false);
             }
-        ]
+        );
+    }, []);
 
+    // Generate table after the data is fetched
+    const generateTable = (data) => {
         return (
-            <tbody>
-                <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Salary</th>
-                    <th>Edit</th>
-                </tr>
-                {data.map((item, i) => {
-                    return (
-                        <tr key={i}>
-                            <th>{item.firstName}</th>
-                            <th>{item.lastName}</th>
-                            <th>{item.salary}</th>
-                            <th><button>Edit</button><button>Delete</button></th>
-                        </tr>
-                    )
-                })}
-            </tbody>
+            <table>
+                <tbody>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Salary</th>
+                        <th>Edit</th>
+                    </tr>
+                    {data.map((item, i) => {
+                        return (
+                            <tr key={i}>
+                                <th>{item.firstName}</th>
+                                <th>{item.lastName}</th>
+                                <th>{item.salary}</th>
+                                <th><button>Edit</button><button>Delete</button></th>
+                            </tr>
+                        )
+                    })}
+                </tbody>
+            </table>
         )
     }
 
     return (
-        <table>
-            {generateTable()}
-        </table>
+        <div>
+            {loading ? <h1>Loading</h1> : generateTable(employeeData)}
+        </div>
     )
 }
 
