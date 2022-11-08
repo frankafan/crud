@@ -17,10 +17,13 @@ const EmployeeTable = () => {
                 setEmployeeData(res);
                 setLoading(false);
             }
+        ).then(
+            console.log("Data fetched")
         );
     }, []);
 
 
+    // Delete the employee with the input id and update employee data
     const deleteEmployee = (id) => {
         fetch("http://localhost:8000/employee/" + id, {
             method: "DELETE"
@@ -28,9 +31,12 @@ const EmployeeTable = () => {
         ).then(
             res => res.json()
         ).then(
+            // Remove deleted employee from employee data
+            setEmployeeData(employeeData.filter(x => x._id != id))
+        ).then(
             res => console.log(res.message)
         );
-    }
+    };
 
     // Generate table after the data is fetched
     const generateTable = (data) => {
