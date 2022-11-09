@@ -53,15 +53,15 @@ const EditForm = (params) => {
                                 <form onSubmit={handleSubmit}>
                                     <label className="block text-lg font-light mt-4">
                                         First Name:
-                                        <input className="ml-4 rounded border-gray-300 p-3 border" type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+                                        <input className="ml-4 rounded border-gray-300 p-3 border" type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} required/>
                                     </label>
                                     <label className="block text-lg font-light mt-4">
                                         Last Name:
-                                        <input className="ml-4 rounded border-gray-300 p-3 border" type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} />
+                                        <input className="ml-4 rounded border-gray-300 p-3 border" type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} required/>
                                     </label>
                                     <label className="block text-lg font-light mt-4">
                                         Salary:
-                                        <input className="ml-4 rounded border-gray-300 p-3 border" type="text" value={salary} onChange={(e) => setSalary(e.target.value)} />
+                                        <input className="ml-4 rounded border-gray-300 p-3 border" type="number" min="0" value={salary} onChange={(e) => setSalary(e.target.value)} required/>
                                     </label>
                                     <input type="submit" value="Submit" className="bg-white hover:bg-gray-300 font-bold mt-5 mx-1 px-3 py-2 border border-gray-400 rounded shadow transition duration-200"/>
                                     <button
