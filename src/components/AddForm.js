@@ -74,7 +74,7 @@ const AddForm = () => {
                         <div className="bg-white shadow-lg rounded">
                             <div className="p-5 border rounded-t">
                                 <h1 className="text-xl">
-                                    Edit Employee
+                                    Add Employee
                                 </h1>
                             </div>
                             <div className="py-5 px-14">
