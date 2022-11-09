@@ -10,7 +10,7 @@ const employeeSchema = new mongoose.Schema({
         required: true
     },
     salary: {
-        type: String,
+        type: Number,
         required: true,
         default: 0
     }
