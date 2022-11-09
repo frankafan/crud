@@ -6,7 +6,7 @@ const AddForm = () => {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [salary, setSalary] = useState("");
-    const [dialogOpen, setDialogOpen] = useState(false);
+    const [modalOpen, setModalOpen] = useState(false);
 
     // Update backend employee data with employee data stored in the states
     const handleSubmit = () => {
@@ -29,11 +29,7 @@ const AddForm = () => {
     };
 
     function closeModal() {
-        setDialogOpen(false);
-    }
-
-    function openModal() {
-        setDialogOpen(true);
+        setModalOpen(false);
     }
 
     return (
@@ -41,11 +37,11 @@ const AddForm = () => {
             <button
                 className="bg-blue-400 hover:bg-blue-600 transition duration-300 text-white font-bold m-5 mb-12 px-3 py-2 border border-gray-400 rounded shadow"
                 type="button"
-                onClick={() => setDialogOpen(true)}
+                onClick={() => setModalOpen(true)}
             >
                 Add Employee
             </button>
-            {dialogOpen ? (
+            {modalOpen ? (
                 <>
                     <div className="justify-center items-center flex fixed inset-0 z-50">
                         <div className="bg-white shadow-lg rounded">
