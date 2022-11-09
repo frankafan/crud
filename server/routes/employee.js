@@ -112,6 +112,17 @@ router.post('/addExamples', async (req, res) => {
     }
 });
 
+// Get all employees with the same first and last name in body
+router.get('/employeesByName', async (req, res) => {
+    try {
+        console.log(req.body);
+        const employees = await Employee.findOne(req.body);
+        res.json(employees);
+    } catch (err) {
+        res.json({ message: err.message });
+    }
+});
+
 async function getEmployee(req, res, next) {
     let employee;
     try {
