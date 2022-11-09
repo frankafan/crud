@@ -56,6 +56,61 @@ router.delete('/:id', getEmployee, async (req, res) => {
     }
 });
 
+// Delete all employee data
+router.delete('/', async (req, res) => {
+    try {
+        await Employee.remove({});
+        res.json({ message: "All employees deleted" });
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
+// Add example employee data
+router.post('/addExamples', async (req, res) => {
+    try {
+        await Employee.insertMany([
+            {
+                "firstName": "Lewis",
+                "lastName": "Burson",
+                "salary": 40700
+            },
+            {
+                "firstName": "Ian",
+                "lastName": "Malcolm",
+                "salary": 70000
+            },
+            {
+                "firstName": "Ellie",
+                "lastName": "Sattler",
+                "salary": 102000
+            },
+            {
+                "firstName": "Dennis",
+                "lastName": "Nedry",
+                "salary": 52000
+            },
+            {
+                "firstName": "John",
+                "lastName": "Hammond",
+                "salary": 89600
+            },
+            {
+                "firstName": "Ray",
+                "lastName": "Arnold",
+                "salary": 45000
+            },
+            {
+                "firstName": "Laura",
+                "lastName": "Burnett",
+                "salary": 80000
+            }
+        ])
+        res.status(201).json({ message: "Example data added"});
+    } catch (err) {
+        res.status(400).json({ message: err.message });
+    }
+});
 
 async function getEmployee(req, res, next) {
     let employee;
