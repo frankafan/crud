@@ -8,6 +8,10 @@ const EmployeeTable = () => {
     const [employeeData, setEmployeeData] = useState();  // employee data requested from the backend
     const [employeeToEdit, setEmployeeToEdit] = useState();  // employee data passed to the edit form component
 
+    const [editModalOpen, setEditModalOpen] = useState(false);
+    const handleEditOpen = () => setEditModalOpen(true);
+    const handleEditClose = () => setEditModalOpen(false);
+
     // Use GET request to fetch employee data everytime the page is loaded
     useEffect(() => {
         fetch("http://localhost:8000/employee/", {
@@ -59,7 +63,10 @@ const EmployeeTable = () => {
                                 <th className="font-light p-6">{item.lastName}</th>
                                 <th className="font-light p-6">{item.salary}</th>
                                 <th className="font-light p-6 text-sm">
-                                    <button className="bg-white hover:bg-gray-300 font-bold mx-1 px-3 py-2 border border-gray-400 rounded shadow transition duration-200" onClick={(e) => setEmployeeToEdit(item)}>Edit</button>
+                                    <button className="bg-white hover:bg-gray-300 font-bold mx-1 px-3 py-2 border border-gray-400 rounded shadow transition duration-200" onClick={(e) => {
+                                        setEmployeeToEdit(item);
+                                        handleEditOpen();
+                                    }}>Edit</button>
                                     <button className="bg-red-500 hover:bg-red-700 text-white font-bold mx-1 px-3 py-2 border border-black rounded shadow transition duration-200" type="submit" onClick={(e) => deleteEmployee(item._id)}>Delete</button>
                                 </th>
                             </tr>
@@ -74,7 +81,7 @@ const EmployeeTable = () => {
         loading ? <h1>Loading</h1> :
             <div className="inline-block">
                 {generateTable(employeeData)}
-                <EditForm data={employeeToEdit}></EditForm>
+                <EditForm data={employeeToEdit} open={editModalOpen} onClose={handleEditClose}></EditForm>
                 <AddForm></AddForm>
             </div>
     );

@@ -1,24 +1,22 @@
 import React, { useState, useEffect } from "react";
 
-const EditForm = (employee) => {
+const EditForm = (params) => {
 
     // Populate employee data into states when the component is loaded with a new employee
     useEffect(() => {
-        if (employee.data) {
-            setId(employee.data._id);
-            setFirstName(employee.data.firstName);
-            setLastName(employee.data.lastName);
-            setSalary(employee.data.salary);
-            openModal();
+        if (params.data) {
+            setId(params.data._id);
+            setFirstName(params.data.firstName);
+            setLastName(params.data.lastName);
+            setSalary(params.data.salary);
         };
-    }, [employee]);
+    }, [params]);
 
     // Store form data as states
     const [id, setId] = useState("");
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [salary, setSalary] = useState("");
-    const [dialogOpen, setDialogOpen] = useState(false);
 
     // Update backend employee data with employee data stored in the states
     const handleSubmit = () => {
@@ -40,18 +38,9 @@ const EditForm = (employee) => {
         );
     };
 
-    function closeModal() {
-        setDialogOpen(false);
-    }
-
-    function openModal() {
-        setDialogOpen(true);
-    }
-
-
     return (
         <>
-            {dialogOpen ? (
+            {params.open ? (
                 <>
                     <div className="justify-center items-center flex fixed inset-0 z-50">
                         <div className="bg-white shadow-lg rounded">
@@ -78,7 +67,7 @@ const EditForm = (employee) => {
                                     <button
                                         type="button"
                                         className="bg-red-500 hover:bg-red-700 text-white font-bold mt-5 mx-1 px-3 py-2 border border-gray-400 rounded shadow transition duration-200"
-                                        onClick={closeModal}
+                                        onClick={params.onClose}
                                     >
                                         Cancel
                                     </button>
