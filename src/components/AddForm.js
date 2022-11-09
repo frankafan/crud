@@ -28,6 +28,26 @@ const AddForm = () => {
         );
     };
 
+    // Update clear backend employee data and populate with example employee data
+    const handleReset = () => {
+        fetch("http://localhost:8000/employee/", {
+            method: "DELETE",
+        }
+        ).then(
+            res => res.json()
+        ).then(
+            res => console.log(res.message)
+        ).then(
+            () => fetch("http://localhost:8000/employee/addExamples", { method: "POST" })
+        ).then(
+            res => res.json()
+        ).then(
+            res => console.log(res.message)
+        ).then(
+            () => window.location.reload()
+        );
+    };
+
     function closeModal() {
         setModalOpen(false);
     }
@@ -40,6 +60,13 @@ const AddForm = () => {
                 onClick={() => setModalOpen(true)}
             >
                 Add Employee
+            </button>
+            <button
+                className="bg-blue-400 hover:bg-blue-600 transition duration-300 text-white font-bold m-5 mb-12 px-3 py-2 border border-gray-400 rounded shadow"
+                type="submit"
+                onClick={handleReset}
+            >
+                Reset Employees
             </button>
             {modalOpen ? (
                 <>
