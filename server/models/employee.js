@@ -14,7 +14,10 @@ const employeeSchema = new mongoose.Schema({
         required: true,
         default: 0,
         min:0
-    }
+    },
+    role: {
+        type: String
+    },
 });
 
 module.exports = mongoose.model("Employee", employeeSchema);

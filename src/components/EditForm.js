@@ -9,6 +9,7 @@ const EditForm = (params) => {
             setFirstName(params.data.firstName);
             setLastName(params.data.lastName);
             setSalary(params.data.salary);
+            setRole(params.data.role);
         };
     }, [params]);
 
@@ -17,6 +18,7 @@ const EditForm = (params) => {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [salary, setSalary] = useState("");
+    const [role, setRole] = useState("");
 
     // Update backend employee data with employee data stored in the states
     const handleSubmit = () => {
@@ -28,7 +30,8 @@ const EditForm = (params) => {
             body: JSON.stringify({
                 firstName: firstName,
                 lastName: lastName,
-                salary: salary
+                salary: salary,
+                role: role
             })
         }
         ).then(
@@ -63,6 +66,11 @@ const EditForm = (params) => {
                                         Salary:
                                         <input className="ml-4 rounded border-gray-300 p-3 border" type="number" min="0" value={salary} onChange={(e) => setSalary(e.target.value)} required/>
                                     </label>
+                                    <label className="block text-lg font-light mt-4">
+                                        Role:
+                                        <input className="ml-4 rounded border-gray-300 p-3 border" type="text" value={role} onChange={(e) => setRole(e.target.value)} required/>
+                                    </label>
+
                                     <input type="submit" value="Submit" className="bg-white hover:bg-gray-300 font-bold mt-5 mx-1 px-3 py-2 border border-gray-400 rounded shadow transition duration-200"/>
                                     <button
                                         type="button"

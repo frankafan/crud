@@ -17,9 +17,11 @@ router.post('/', async (req, res) => {
     const employee = new Employee({
         firstName: req.body.firstName,
         lastName: req.body.lastName,
-        salary: req.body.salary
+        salary: req.body.salary,
+        role: req.body.role
     });
     try {
+        console.log(employee);
         const newEmployee = await employee.save();
         res.status(201).json(newEmployee);
     } catch (err) {
@@ -37,6 +39,9 @@ router.patch('/:id', getEmployee, async (req, res) => {
     }
     if (req.body.salary != null) {
         res.employee.salary = req.body.salary;
+    }
+    if (req.body.role != null) {
+        res.employee.role = req.body.role;
     }
     try {
         const updatedEmployee = await res.employee.save();

@@ -54,6 +54,7 @@ const EmployeeTable = () => {
                         <th className="p-8">First Name</th>
                         <th className="p-8">Last Name</th>
                         <th className="p-8">Salary</th>
+                        <th className="p-8">Role</th>
                         <th className="p-8">Edit</th>
                     </tr>
                     {data.map((item, i) => {
@@ -62,6 +63,7 @@ const EmployeeTable = () => {
                                 <th className="font-light p-6">{item.firstName}</th>
                                 <th className="font-light p-6">{item.lastName}</th>
                                 <th className="font-light p-6">{item.salary}</th>
+                                <th className="font-light p-6">{item.role}</th>
                                 <th className="font-light p-6 text-sm">
                                     <button className="bg-white hover:bg-gray-300 font-bold mx-1 px-3 py-2 border border-gray-400 rounded shadow transition duration-200" onClick={(e) => {
                                         setEmployeeToEdit(item);
